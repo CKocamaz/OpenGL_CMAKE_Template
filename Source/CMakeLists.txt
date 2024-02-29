@@ -6,5 +6,13 @@ include_directories(../../Dependencies/glfw/include)
 
 add_executable(calistir ${SOURCES})
 
-target_link_libraries(calistir PRIVATE ../../Dependencies/glfw/lib/glfw3)
-target_link_libraries(calistir PRIVATE ../../Dependencies/glew/lib/Debug/glew32d)
+# Link GLFW library
+target_link_libraries(calistir PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/glfw/lib/libglfw3.a)
+
+# Link GLEW library
+target_link_libraries(calistir PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/glew/lib/libGLEW.a)
+
+target_link_libraries(calistir PRIVATE dl pthread)
+
+find_package(OpenGL REQUIRED)
+target_link_libraries(calistir PRIVATE OpenGL::GL)
